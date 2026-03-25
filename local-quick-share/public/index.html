@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickShare | Local File Transfer</title>
+    <!-- Inter and Outfit Fonts for that premium feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span id="logo-icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.6" y1="6.51" y2="10.49"/></svg>
+                </span>
+                <h1>QuickShare</h1>
+            </div>
+            <div id="connection-info" class="badge">
+                <span id="status-dot"></span>
+                <span id="local-url">Connecting...</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="main-layout">
+                <!-- Left Section: Upload & QR -->
+                <div class="panel upload-panel">
+                    <div class="card intro-card">
+                        <h2>Transfer Files Easily</h2>
+                        <p>Share files within your local Wi-Fi. Just upload and others scan the QR to download.</p>
+                    </div>
+
+                    <!-- QR Code Card -->
+                    <div id="qr-section" class="card qr-card secondary-card">
+                        <h3>Connect a Mobile</h3>
+                        <div id="qr-container">
+                            <div class="qr-placeholder">Generating...</div>
+                        </div>
+                        <p class="qr-help">Scan this code with your phone's camera.</p>
+                    </div>
+
+                    <!-- Drag & Drop Area -->
+                    <div id="drop-zone" class="card drop-area">
+                        <div class="drop-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload-cloud"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>
+                        </div>
+                        <div class="drop-text">
+                            <h3>Choose or Drop Files</h3>
+                            <p>Support for all file types</p>
+                        </div>
+                        <div class="password-input-container">
+                             <input type="password" id="file-password" placeholder="Set Password (Optional)" class="file-pass-input">
+                        </div>
+                        <button class="btn btn-primary" id="select-btn">Select & Share</button>
+                        <input type="file" id="file-input" hidden>
+                        
+                        <div id="upload-progress-container" class="progress-bar-container" style="display: none;">
+                            <div class="progress-info">
+                                <span id="progress-filename">Uploading...</span>
+                                <span id="progress-percent">0%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div id="progress-fill" class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Section: Files List -->
+                <div class="panel files-panel">
+                    <div class="card files-card">
+                        <div class="card-header">
+                            <h3>Recent Downloads</h3>
+                            <button id="refresh-btn" class="btn-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-cw"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+                            </button>
+                        </div>
+                        <div id="files-list" class="files-list">
+                            <div class="empty-state">
+                                <p>No files uploaded yet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Made for speed and security in your local network.</p>
+        </footer>
+    </div>
+
+    <!-- QR Modal -->
+    <div id="qr-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="modal-filename">File Name</h3>
+            <div id="modal-qr-container"></div>
+            <p>Scan to download this file</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
